@@ -1,0 +1,125 @@
+.fare-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.fare-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.fare-table thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.fare-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1rem;
+  position: relative;
+}
+
+.fare-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.3s;
+}
+
+.fare-table th.sortable:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.fare-table th.fare-column,
+.fare-table td.fare {
+  text-align: right;
+}
+
+.fare-table tbody tr {
+  border-bottom: 1px solid #e9ecef;
+  transition: background 0.2s;
+}
+
+.fare-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.fare-table td {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+}
+
+.fare-table td.journey-id {
+  font-weight: 600;
+  color: #667eea;
+}
+
+.fare-table td.zone {
+  color: #495057;
+}
+
+.fare-table td.fare {
+  font-weight: 600;
+  color: #28a745;
+}
+
+.fare-table .no-results {
+  text-align: center;
+  padding: 2rem;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.fare-table tfoot {
+  background: #f8f9fa;
+  font-weight: bold;
+}
+
+.fare-table .total-row td {
+  padding: 1rem;
+  font-size: 1.1rem;
+}
+
+.fare-table .total-label {
+  text-align: right;
+  color: #495057;
+}
+
+.fare-table .total-fare {
+  color: #667eea;
+  font-size: 1.2rem;
+  text-align: right;
+}
+
+.filter-info {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #e7f3ff;
+  border-radius: 5px;
+  border: 1px solid #b3d9ff;
+}
+
+.filter-info p {
+  margin: 0;
+  color: #0066cc;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .fare-table {
+    font-size: 0.9rem;
+  }
+  
+  .fare-table th,
+  .fare-table td {
+    padding: 0.5rem;
+  }
+  
+  .fare-table-container {
+    border: 1px solid #e9ecef;
+    border-radius: 5px;
+  }
+}

@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: pearlcard-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - pearlcard-network
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: pearlcard-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:////app/data/pearlcard_fare_rules.db
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - ./backend/app:/app/app
+      - pearlcard-data:/app/data  # Persistent volume for SQLite database
+    networks:
+      - pearlcard-network
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: pearlcard-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    networks:
+      - pearlcard-network
+    restart: unless-stopped
+
+networks:
+  pearlcard-network:
+    driver: bridge
+
+volumes:
+  pearlcard-data:  # Named volume for database persistence
+  redis-data:      # Named volume for Redis persistence
