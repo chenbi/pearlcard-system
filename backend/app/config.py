@@ -23,6 +23,7 @@ class Settings:
     # CORS Settings
     CORS_ORIGINS = [
         "http://163.192.43.3:3000",
+        "163.192.43.3:3000",
         "http://localhost:3000",
         "http://127.0.0.1:3000",
         "http://localhost:8000",
